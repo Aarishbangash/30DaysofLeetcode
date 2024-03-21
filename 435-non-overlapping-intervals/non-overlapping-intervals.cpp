@@ -1,25 +1,24 @@
 class Solution {
 public:
     int eraseOverlapIntervals(vector<vector<int>>& intervals) {
-        sort(intervals.begin(),intervals.end());    //Sort all intervals in ASC order
-        int count = 0;      //Count of number of intervals to be removed
-        int n = intervals.size();   //No of intervals
-        int left = 0;   //left interval
-        int right = 1;  //right interval
-        
-        while(right<n)  //Unless all intervals are compared
+        sort(intervals.begin(),intervals.end());   
+        int count = 0;     
+        int n = intervals.size(); 
+        int left = 0; 
+        int right = 1; 
+        while(right<n)  
         {
-            if(intervals[left][1] <= intervals[right][0])   //Non-overlapping case
+            if(intervals[left][1] <= intervals[right][0])   
             {
                 left = right;
                 right+=1;
             }
-            else if(intervals[left][1]<=intervals[right][1])    //Overlapping case-1 (Remove right interval)
+            else if(intervals[left][1]<=intervals[right][1])   
             {
-                count+=1;       //Delete right
+                count+=1;       
                 right+=1;
             }
-            else if(intervals[left][1]>intervals[right][1])     //Overlapping case-2 (Remove left interval)
+            else if(intervals[left][1]>intervals[right][1])    
             {
                 count+=1;
                 left = right;
